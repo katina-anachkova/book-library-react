@@ -1,12 +1,22 @@
 import { useHistory } from "react-router";
+import { login } from "../services/Api";
 
 const Login = () => {
     
     let history = useHistory();
+
     const onFormSubmit = (e) => {
         e.preventDefault();
         
-        //TODO login
+        const formData = new FormData(e.target);
+        const email = formData.get('email').trim();
+        const password = formData.get('password').trim();
+
+        if (email == '' || password == '') {
+            return alert('All fields ar required')
+        }
+
+         login(email, password);
 
         history.push('/dashboard')
     }
