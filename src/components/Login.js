@@ -1,9 +1,19 @@
-//TODO login
+import { useHistory } from "react-router";
 
 const Login = () => {
+    
+    let history = useHistory();
+    const onFormSubmit = (e) => {
+        e.preventDefault();
+        
+        //TODO login
+
+        history.push('/dashboard')
+    }
+
     return (
         <section id="login-page" className="login">
-        <form id="login-form" action="" method="">
+        <form id="login-form" onSubmit={onFormSubmit}>
             <fieldset>
                 <legend>Login Form</legend>
                 <p className="field">
