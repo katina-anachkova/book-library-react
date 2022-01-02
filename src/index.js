@@ -7,7 +7,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('site-content')
+  document.getElementById('root')
 );
 
 reportWebVitals();
