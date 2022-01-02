@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Details from "./components/BookDetailsPage";
 import CreateBook from "./components/CreateBook";
 import Dashboard from "./components/Dashboard";
 import EditBook from "./components/EditBook";
@@ -11,18 +12,28 @@ import Register from "./components/Register";
 function App() {
     const [page, setPage] = useState('/home');
 
-    const routes = {
-        '/home': <Dashboard/>,
-        '/create': <CreateBook/>,
-        '/edit': <EditBook/>,
-        '/my-books': <MyBooks/>,
-        '/login': <Login/>,
-        '/register': <Register/>,
-    };
-
     const navigationChangeHandler = (path) => {
         setPage(path);
     }
+
+    const router = (path) => {
+        let pathNames = path.split('/');
+        let rootPath = pathNames[1];
+        let argument = pathNames[2];
+
+        const routes = {
+            'home': <Dashboard navigationChangeHandler={navigationChangeHandler}/>,
+            'create': <CreateBook/>,
+            'edit': <EditBook/>,
+            'my-books': <MyBooks/>,
+            'login': <Login/>,
+            'register': <Register/>,
+            'details': <Details id={argument}/>
+        };
+
+        return routes[rootPath]
+    }
+
 
     return (
         <div id="container">
@@ -30,7 +41,7 @@ function App() {
             <Header navigationChangeHandler={navigationChangeHandler} />
 
             <main id="site-content">
-                {routes[page] || <PageNotFound/> }
+                {router(page) || <PageNotFound/> }
             </main>
 
             <footer id="site-footer">
