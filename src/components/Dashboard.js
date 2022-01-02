@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import BookTemplate from "./BookTemplate";
 import * as gameService from '../services/BookService'
-const Dashboard = ({navigationChangeHandler}) => {
+const Dashboard = () => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const Dashboard = ({navigationChangeHandler}) => {
             <h1>Dashboard</h1>
             {books.length > 0
                 ? <ul className="other-books-list">
-                    {books.map(x => <BookTemplate key={x._id} book={x} navigationChangeHandler={navigationChangeHandler} />)}
+                    {books.map(x => <BookTemplate key={x._id} book={x}/>)}
                 </ul>
                 : <p className="no-books">No books in database!</p>
             }

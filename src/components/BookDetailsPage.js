@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import * as gameService from '../services/BookService'
 
-const Details = ({ id }) => {
+const Details = ({ match }) => {
 
     const [book, setBook] = useState({});
 
     useEffect(() => {
-        gameService.getOne(id)
+        gameService.getOne(match.params.bookId)
             .then(book => {
                 setBook(book)
             });
-            //error handling
+        //TODO: error handling
     }, [])
 
+    
     return (
         <section id="details-page" className="details">
             <div className="book-information">
@@ -20,9 +22,9 @@ const Details = ({ id }) => {
                 <p className="type">Type: {book.type}</p>
                 <p className="img"><img src={book.imageUrl} /></p>
                 <div className="actions">
-                    <a className="button" href="/edit">Edit</a>
-                    <a className="button" href="#">Delete</a>
-                    <a className="button" href="#">Like</a>
+                    <Link className="button" to="/edit">Edit</Link>
+                    <Link className="button" to="#">Delete</Link>
+                    <Link className="button" to="#">Like</Link>
 
                     <div className="likes">
                         <img className="hearts" src="/images/heart.png" />

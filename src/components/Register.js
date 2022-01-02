@@ -1,3 +1,5 @@
+//TODO register
+
 const Register = () => {
     return (
         <section id="register-page" className="register">

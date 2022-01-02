@@ -1,26 +1,20 @@
-const Header = ({navigationChangeHandler}) => {
+import { Link } from "react-router-dom";
 
-    const onHeaderClick = (e) => {
-        e.preventDefault();
-        if ( e.target.tagName == 'A'){
-            let url = new URL(e.target.href);
-            navigationChangeHandler(url.pathname)
-        }
-    }
+const Header = () => {
     return (
-        <header onClick={onHeaderClick} id="site-header">
+        <header id="site-header">
         <nav className="navbar">
             <section className="navbar-dashboard">
-                <a href="/dashboard">Dashboard</a>
+                <Link to="/dashboard">Dashboard</Link>
                 <div id="guest">
-                    <a className="button" href="/login">Login</a>
-                    <a className="button" href="/register">Register</a>
+                    <Link className="button" to="/login">Login</Link>
+                    <Link className="button" to="/register">Register</Link>
                 </div>
                 <div id="user">
                     <span>Welcome, email</span>
-                    <a className="button" href="/my-books">My Books</a>
-                    <a className="button" href="/create">Add Book</a>
-                    <a className="button" href="/logout">Logout</a>
+                    <Link className="button" to="/my-books">My Books</Link>
+                    <Link className="button" to="/create">Add Book</Link>
+                    <Link className="button" to="/logout">Logout</Link>
                 </div>
             </section>
         </nav>
