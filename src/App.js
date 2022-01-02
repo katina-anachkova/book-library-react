@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import MyBooks from "./components/MyBooks";
 import Register from "./components/Register";
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { logout } from "./services/Api";
 
 function App() {
     return (
@@ -25,7 +26,7 @@ function App() {
                     <Route path="/register" component={Register} />
                     <Route path="/details/:bookId" component={Details} />
                     <Route path="/logout" render={(props) => {
-                        console.log('logged out')
+                        logout()
                         return <Redirect to="/dashboard"/>
                     }} />
                 </Switch>
