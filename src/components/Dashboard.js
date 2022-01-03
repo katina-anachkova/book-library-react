@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { BookTemplate } from "./BookTemplate";
-import * as gameService from '../services/BookService'
+import * as bookService from '../services/BookService'
 const Dashboard = () => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        gameService.getAll()
-            .then(books => {
+        bookService.getAll()
+            .then((books) => {
                 setBooks(books)
             });
     }, []);

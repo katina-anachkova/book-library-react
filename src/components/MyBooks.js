@@ -21,7 +21,7 @@ export async function myBooksPage() {
     const userData = getUserData();
     const userId = userData.id
 
-return await getMyBooks(userId);
+    return await getMyBooks(userId);
 
 }
 

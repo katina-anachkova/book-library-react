@@ -1,7 +1,32 @@
+import * as bookService from '../services/BookService'
+import { useHistory } from "react-router";
+
 const CreateBook = () => {
+    let history = useHistory();
+
+    const onBookCreate = (e) => {
+
+        let formData = new FormData(e.target);
+
+        let title = formData.get('title').trim();
+        let description = formData.get('description').trim();
+        let imageUrl = formData.get('imageUrl').trim();
+        let type = formData.get('type');
+
+        bookService.createBook({
+            title,
+            description,
+            imageUrl,
+            type
+        });
+
+        history.push('/dashboard')
+
+    }
+
     return (
         <section id="create-page" className="create">
-            <form id="create-form" action="" method="">
+            <form id="create-form" onSubmit={onBookCreate}>
                 <fieldset>
                     <legend>Add new Book</legend>
                     <p className="field">
