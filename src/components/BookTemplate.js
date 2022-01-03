@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const BookTemplate = ({ book }) => {
+export function BookTemplate({ book }){
     
     return (
         <li className="otherBooks">
@@ -12,4 +12,4 @@ const BookTemplate = ({ book }) => {
     );
 }
 
-export default BookTemplate;
+

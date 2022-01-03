@@ -4,16 +4,31 @@ import Dashboard from "./components/Dashboard";
 import EditBook from "./components/EditBook";
 import Header from "./components/Header";
 import Login from "./components/Login";
-import MyBooks from "./components/MyBooks";
+import { MyBooks } from "./components/MyBooks";
 import Register from "./components/Register";
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { logout } from "./services/Api";
+import { useState, useEffect } from 'react'
+import * as util from './util.js'
+
 
 function App() {
+    const [userInfo,setUserInfo] = useState({isAuthenticated: false, user:{}})
+    
+    useEffect(()=> {
+        let user = util.getUserData();
+
+        if (user){
+            setUserInfo({user});
+        }
+
+    },[])
+
+
     return (
         <div id="container">
 
-            <Header />
+            <Header userInfo={userInfo} />
 
             <main id="site-content">
                 <Switch>
@@ -27,7 +42,7 @@ function App() {
                     <Route path="/details/:bookId" component={Details} />
                     <Route path="/logout" render={(props) => {
                         logout()
-                        return <Redirect to="/dashboard"/>
+                        return <Redirect to="/dashboard" />
                     }} />
                 </Switch>
             </main>

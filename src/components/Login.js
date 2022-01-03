@@ -5,7 +5,7 @@ const Login = () => {
     
     let history = useHistory();
 
-    const onFormSubmit = (e) => {
+    const onLogin = (e) => {
         e.preventDefault();
         
         const formData = new FormData(e.target);
@@ -23,7 +23,7 @@ const Login = () => {
 
     return (
         <section id="login-page" className="login">
-        <form id="login-form" onSubmit={onFormSubmit}>
+        <form id="login-form" onSubmit={onLogin}>
             <fieldset>
                 <legend>Login Form</legend>
                 <p className="field">

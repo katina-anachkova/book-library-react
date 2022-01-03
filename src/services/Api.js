@@ -1,4 +1,4 @@
-import {clearUserData, getUserData, setUserData} from "../util.js";
+import {clearUserData, getUserData, isAuthenticated, setUserData} from "../util.js";
 
 const hostname = 'http://localhost:3030';
 
@@ -64,7 +64,8 @@ export async function login(email, password) {
     const userData = {
         email: result.email,
         id: result._id,
-        token: result.accessToken
+        token: result.accessToken,
+        isAuthenticated: true
     };
 
     setUserData(userData);
@@ -90,3 +91,4 @@ export async function logout() {
     get('/users/logout');
     clearUserData();
 }
+
