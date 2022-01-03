@@ -13,17 +13,37 @@ import * as util from './util.js'
 
 
 function App() {
-    const [userInfo,setUserInfo] = useState({isAuthenticated: false, user:{}})
-    
-    useEffect(()=> {
+    const [userInfo, setUserInfo] = useState({ isAuthenticated: false, user: {} })
+
+    useEffect(() => {
         let user = util.getUserData();
 
-        if (user){
-            setUserInfo({user});
+        if (user) {
+            setUserInfo({ user });
         }
 
-    },[])
+    }, [])
 
+    const onRegister = (user) => {
+        setUserInfo({
+            isAuthenticated: true,
+            user: user
+        });
+    }
+
+    const onLogin = (user) => {
+        setUserInfo({
+            isAuthenticated: true,
+            user: user
+        });
+    }
+
+    const onLogout = () => {
+        setUserInfo({
+            isAuthenticated: false,
+            user: {}
+        });
+    }
 
     return (
         <div id="container">
@@ -37,12 +57,17 @@ function App() {
                     <Route path="/create" component={CreateBook} />
                     <Route path="/edit" component={EditBook} />
                     <Route path="/my-books" component={MyBooks} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
+                    <Route path="/login">
+                        <Login onLogin={onLogin} />
+                    </Route>
+                    <Route path="/register">
+                        <Register onRegister={onRegister} />
+                    </Route>
                     <Route path="/details/:bookId" component={Details} />
                     <Route path="/logout" render={(props) => {
                         logout()
-                        return <Redirect to="/dashboard" />
+                        onLogout()
+                        return <Redirect to="/login" />
                     }} />
                 </Switch>
             </main>
