@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import * as bookService from '../services/BookService'
+import * as bookService from '../services/BookService';
+import BookControls from "./BookControls";
 
 const Details = ({ match }) => {
 
@@ -13,7 +14,7 @@ const Details = ({ match }) => {
             });
     }, [])
 
-    
+
     return (
         <section id="details-page" className="details">
             <div className="book-information">
@@ -21,10 +22,8 @@ const Details = ({ match }) => {
                 <p className="type">Type: {book.type}</p>
                 <p className="img"><img src={book.imageUrl} /></p>
                 <div className="actions">
-                    <Link className="button" to={`/edit/${book._id}`}>Edit</Link>
-                    <Link className="button" to="#">Delete</Link>
+                    <BookControls match={match}/>
                     <Link className="button" to="#">Like</Link>
-
                     <div className="likes">
                         <img className="hearts" src="/images/heart.png" />
                         <span id="total-likes">Likes: {book.likes}</span>
