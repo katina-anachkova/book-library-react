@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { BookTemplate } from "./BookTemplate";
-import * as bookService from '../services/BookService'
+import BookTemplate from "./BookTemplate";
+import * as bookService from '../services/BookService';
+
 const Dashboard = () => {
     const [books, setBooks] = useState([]);
 
