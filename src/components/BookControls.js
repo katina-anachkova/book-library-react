@@ -1,8 +1,8 @@
-import { getUserData } from '../util';
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import * as bookService from '../services/BookService';
 import { useHistory } from 'react-router';
+import { getUserData } from '../util';
+import * as bookService from '../services/BookService';
 
 const BookControls = ({ match }) => {
 
@@ -15,7 +15,7 @@ const BookControls = ({ match }) => {
     useEffect(() => {
         bookService.getOne(match.params.bookId)
             .then(book => {
-                setBook(book)
+                setBook(book);
             });
     }, [])
     

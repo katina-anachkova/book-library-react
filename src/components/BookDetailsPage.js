@@ -1,19 +1,47 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import * as bookService from '../services/BookService';
-import BookControls from "./BookControls";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router";
+import { getUserData } from "../util.js";
+import BookControls from "./BookControls.js";
+import * as bookService from '../services/BookService.js';
 
 const Details = ({ match }) => {
 
     const [book, setBook] = useState({});
+    const [likes, setLikes] = useState(0);//{}
+    const [hasLiked, setHasLiked] = useState(0);//?
+    const userData = getUserData();
+    // let history = useHistory();
 
     useEffect(() => {
         bookService.getOne(match.params.bookId)
             .then(book => {
-                setBook(book)
+                setBook(book);
             });
-    }, [])
+    }, []);
 
+    useEffect(() => {
+        bookService.getLikesByBookId(match.params.bookId)
+            .then(likes => {
+                setLikes(likes);
+            });
+    }, [likes]);
+
+    useEffect(() => {
+        bookService.getMyLikeByBookId(match.params.bookId, userData.id)
+            .then(like => {
+                setHasLiked(like);
+            });
+    }, [likes]);
+
+    const isOwner = userData && userData.id == book._ownerId;
+
+    let showLikeButton = userData != null && isOwner == false && hasLiked == false;
+
+    async function onLike() {
+        await bookService.likeBook(match.params.bookId);
+        // showLikeButton = false;
+    }
 
     return (
         <section id="details-page" className="details">
@@ -22,11 +50,13 @@ const Details = ({ match }) => {
                 <p className="type">Type: {book.type}</p>
                 <p className="img"><img src={book.imageUrl} /></p>
                 <div className="actions">
-                    <BookControls match={match}/>
-                    <Link className="button" to="#">Like</Link>
+                    <BookControls match={match} />
+                    {showLikeButton
+                        ? <button className="button" onClick={onLike} to="#">Like</button>
+                        : null}
                     <div className="likes">
                         <img className="hearts" src="/images/heart.png" />
-                        <span id="total-likes">Likes: {book.likes}</span>
+                        <span id="total-likes">Likes: {likes}</span>
                     </div>
                 </div>
             </div>

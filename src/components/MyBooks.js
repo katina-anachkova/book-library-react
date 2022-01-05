@@ -1,6 +1,6 @@
-import BookTemplate from "./BookTemplate.js";
 import { getUserData } from "../util.js";
 import { useState, useEffect } from "react";
+import BookTemplate from "./BookTemplate.js";
 import * as bookService from '../services/BookService.js';
 
 export function MyBooks() {
@@ -12,7 +12,7 @@ export function MyBooks() {
     useEffect(() => {
         bookService.getMyBooks(userId)
             .then((books) => {
-                setBooks(books)
+                setBooks(books);
             });
     }, []);
 

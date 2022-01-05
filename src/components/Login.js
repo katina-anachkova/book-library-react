@@ -13,12 +13,12 @@ const Login = ({ onLogin }) => {
         const isAuthenticated = true;
 
         if (email == '' || password == '') {
-            return alert('All fields ar required')
+            return alert('All fields ar required');
         }
 
         login(email, password);
-        onLogin({email, password, isAuthenticated})
-        history.push('/dashboard')
+        onLogin({email, password, isAuthenticated});
+        history.push('/dashboard');
     }
 
     return (

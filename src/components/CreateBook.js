@@ -1,5 +1,5 @@
-import * as bookService from '../services/BookService'
 import { useHistory } from "react-router";
+import * as bookService from '../services/BookService';
 
 const CreateBook = () => {
     let history = useHistory();
@@ -19,7 +19,7 @@ const CreateBook = () => {
             imageUrl,
             type
         });
-        history.push('/dashboard')
+        history.push('/dashboard');
     }
 
     return (

@@ -1,6 +1,6 @@
-import * as bookService from '../services/BookService';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import * as bookService from '../services/BookService';
 
 const EditBook = ({ match }) => {
     const history = useHistory();
@@ -19,14 +19,13 @@ const EditBook = ({ match }) => {
     const onBookEdit = (e) => {
         e.preventDefault();
 
-        let bookData = Object.fromEntries(new FormData(e.currentTarget))
+        let bookData = Object.fromEntries(new FormData(e.currentTarget));
 
         bookService.editBook(bookId, bookData);
         history.push('/dashboard');
     }
 
     return (
-
         <section id="edit-page" className="edit">
             <form id="edit-form" onSubmit={onBookEdit}>
                 <fieldset>

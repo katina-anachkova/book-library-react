@@ -8,7 +8,6 @@ const Register = ({ onRegister }) => {
     const onRegisterHandler = (e) => {
         e.preventDefault();
 
-        
         const formData = new FormData(e.target);
         const email = formData.get('email').trim();
         const password = formData.get('password').trim();
@@ -16,16 +15,16 @@ const Register = ({ onRegister }) => {
         const isAuthenticated = true;
 
         if (email == '' || password == '' || repass == '') {
-            return alert('All fields ar required!')
+            return alert('All fields ar required!');
         }
 
         if (password !== repass) {
-            return alert(`Passwords must match!`)
+            return alert(`Passwords must match!`);
         }
 
         register(email, password);
-        onRegister({ email, password, isAuthenticated })
-        history.push('/dashboard')
+        onRegister({ email, password, isAuthenticated });
+        history.push('/dashboard');
     }
 
     return (
@@ -55,7 +54,7 @@ const Register = ({ onRegister }) => {
                 </fieldset>
             </form>
         </section>
-    )
+    );
 }
 
 export default Register;

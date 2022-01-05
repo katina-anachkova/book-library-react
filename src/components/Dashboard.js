@@ -8,7 +8,7 @@ const Dashboard = () => {
     useEffect(() => {
         bookService.getAll()
             .then((books) => {
-                setBooks(books)
+                setBooks(books);
             });
     }, []);
 

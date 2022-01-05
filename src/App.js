@@ -22,7 +22,6 @@ function App() {
         if (user) {
             setUserInfo({ user });
         }
-
     }, [])
 
     const onRegister = (user) => {
@@ -49,9 +48,7 @@ function App() {
     return (
         <AuthCtx.Provider value={userInfo}>
         <div id="container">
-
             <Header userInfo={userInfo} />
-
             <main id="site-content">
                 <Switch>
                     <Route path="/" exact component={Dashboard} />
@@ -73,7 +70,6 @@ function App() {
                     }} />
                 </Switch>
             </main>
-
             <footer id="site-footer">
                 <p>@OnlineBooksLibrary</p>
             </footer>

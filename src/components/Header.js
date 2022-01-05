@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import AuthCtx from "../context/AuthCtx";
 import { useContext } from "react";
+import AuthCtx from "../context/AuthCtx";
 
 const Header = () => {
     
@@ -30,7 +30,7 @@ const Header = () => {
                 </section>
             </nav>
         </header>
-    )
+    );
 }
 
 export default Header;
