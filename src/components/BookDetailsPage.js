@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { getUserData } from "../util.js";
@@ -6,19 +5,18 @@ import BookControls from "./BookControls.js";
 import * as bookService from '../services/BookService.js';
 
 const Details = ({ match }) => {
-
+    const history = useHistory();
     const [book, setBook] = useState({});
-    const [likes, setLikes] = useState(0);//{}
-    const [hasLiked, setHasLiked] = useState(0);//?
+    const [likes, setLikes] = useState(0);
+    const [hasLiked, setHasLiked] = useState(0);
     const userData = getUserData();
-    // let history = useHistory();
 
     useEffect(() => {
         bookService.getOne(match.params.bookId)
             .then(book => {
                 setBook(book);
             });
-    }, []);
+    }, [likes]);
 
     useEffect(() => {
         bookService.getLikesByBookId(match.params.bookId)
@@ -41,6 +39,8 @@ const Details = ({ match }) => {
     async function onLike() {
         await bookService.likeBook(match.params.bookId);
         // showLikeButton = false;
+        history.push('/dashboard')
+
     }
 
     return (
