@@ -35,6 +35,7 @@ function createOptions(method = 'get', data) {
     }
 
     const userData = getUserData();
+    
     if (userData) {
         options.headers['X-Authorization'] = userData.token;
     }

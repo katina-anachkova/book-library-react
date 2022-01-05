@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import AuthCtx from "../context/AuthCtx";
+import { useContext } from "react";
 
-const Header = ({ userInfo }) => {
+const Header = () => {
+    
+    const userInfo = useContext(AuthCtx);
 
     let guestNav = <div id="guest">
         <Link className="button" to="/login">Login</Link>

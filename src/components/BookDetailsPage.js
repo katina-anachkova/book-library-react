@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import * as gameService from '../services/BookService'
+import * as bookService from '../services/BookService'
 
 const Details = ({ match }) => {
 
     const [book, setBook] = useState({});
 
     useEffect(() => {
-        gameService.getOne(match.params.bookId)
+        bookService.getOne(match.params.bookId)
             .then(book => {
                 setBook(book)
             });
-        //TODO: error handling
     }, [])
 
     
@@ -22,13 +21,13 @@ const Details = ({ match }) => {
                 <p className="type">Type: {book.type}</p>
                 <p className="img"><img src={book.imageUrl} /></p>
                 <div className="actions">
-                    <Link className="button" to="/edit">Edit</Link>
+                    <Link className="button" to={`/edit/${book._id}`}>Edit</Link>
                     <Link className="button" to="#">Delete</Link>
                     <Link className="button" to="#">Like</Link>
 
                     <div className="likes">
                         <img className="hearts" src="/images/heart.png" />
-                        <span id="total-likes">Likes: 0</span>
+                        <span id="total-likes">Likes: {book.likes}</span>
                     </div>
                 </div>
             </div>

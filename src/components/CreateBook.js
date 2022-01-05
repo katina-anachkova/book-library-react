@@ -19,9 +19,7 @@ const CreateBook = () => {
             imageUrl,
             type
         });
-
         history.push('/dashboard')
-
     }
 
     return (

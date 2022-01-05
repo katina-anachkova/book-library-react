@@ -8,6 +8,7 @@ const Register = ({ onRegister }) => {
     const onRegisterHandler = (e) => {
         e.preventDefault();
 
+        
         const formData = new FormData(e.target);
         const email = formData.get('email').trim();
         const password = formData.get('password').trim();
