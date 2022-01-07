@@ -5,6 +5,7 @@ import BookControls from "./BookControls.js";
 import * as bookService from '../services/BookService.js';
 
 const Details = ({ match }) => {
+
     const history = useHistory();
     const [book, setBook] = useState({});
     const [likes, setLikes] = useState(0);
@@ -38,8 +39,7 @@ const Details = ({ match }) => {
 
     async function onLike() {
         await bookService.likeBook(match.params.bookId);
-        // showLikeButton = false;
-        history.push('/dashboard')
+        history.push('/dashboard');
     }
 
     return (
