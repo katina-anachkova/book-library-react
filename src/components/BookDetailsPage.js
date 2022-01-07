@@ -17,7 +17,7 @@ const Details = ({ match }) => {
             .then(book => {
                 setBook(book);
             });
-    }, [likes]);
+    }, [likes]);//
 
     useEffect(() => {
         bookService.getLikesByBookId(match.params.bookId)
@@ -27,15 +27,20 @@ const Details = ({ match }) => {
     }, [likes]);
 
     useEffect(() => {
-        bookService.getMyLikeByBookId(match.params.bookId, userData.id)
-            .then(like => {
-                setHasLiked(like);
-            });
+        if(userData != null) {
+            bookService.getMyLikeByBookId(match.params.bookId, userData.id)
+                .then(like => {
+                    setHasLiked(like);
+                });
+
+        }else{
+            return
+        }
     }, [likes]);
 
     const isOwner = userData && userData.id == book._ownerId;
 
-    let showLikeButton = userData != null && isOwner == false && hasLiked == false;
+    const showLikeButton = userData != null && isOwner == false && hasLiked == false;
 
     async function onLike() {
         await bookService.likeBook(match.params.bookId);

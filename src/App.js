@@ -14,7 +14,7 @@ import AuthCtx from "./context/AuthCtx";
 
 
 function App() {
-    const [userInfo, setUserInfo] = useState({ isAuthenticated: false, user: {} })
+    const [userInfo, setUserInfo] = useState({ isAuthenticated: false, user: {} });   
 
     useEffect(() => {
         let user = util.getUserData();

@@ -26,7 +26,7 @@ const BookControls = ({ match }) => {
     }
 
     return (
-        (isOwner)
+        isOwner
             ? <><Link className="button" to={`/edit/${book._id}`}>Edit</Link>
                 <Link className="button" to="#" onClick={onDelete} >Delete</Link>
             </>
