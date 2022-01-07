@@ -17,8 +17,12 @@ const Login = ({ onLogin }) => {
         }
 
         login(email, password);
-        onLogin({email, password, isAuthenticated});
-        history.push('/dashboard');
+
+        onLogin({ email, password, isAuthenticated });
+
+        if (sessionStorage.length > 0) {
+            history.push('/dashboard');
+        }
     }
 
     return (

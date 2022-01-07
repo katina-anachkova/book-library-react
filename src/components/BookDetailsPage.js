@@ -40,7 +40,6 @@ const Details = ({ match }) => {
         await bookService.likeBook(match.params.bookId);
         // showLikeButton = false;
         history.push('/dashboard')
-
     }
 
     return (

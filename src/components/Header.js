@@ -23,7 +23,7 @@ const Header = () => {
             <nav className="navbar">
                 <section className="navbar-dashboard">
                     <Link to="/dashboard">Dashboard</Link>
-                    {userInfo.user.isAuthenticated
+                    {sessionStorage.length > 0 && userInfo.user.isAuthenticated
                         ? userNav
                         : guestNav
                     }
