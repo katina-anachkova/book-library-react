@@ -14,67 +14,50 @@ import AuthCtx from "./context/AuthCtx";
 
 
 function App() {
-    const [userInfo, setUserInfo] = useState({ isAuthenticated: false, user: {} });   
-
-    useEffect(() => {
-        let user = util.getUserData();
-
-        if (user) {
-            setUserInfo({ user });
-        }
-    }, [])
+    const [userInfo, setUserInfo] = useState({ isAuthenticated: false, user: {} });
 
     const onRegister = (user) => {
-        setUserInfo({
-            isAuthenticated: true,
-            user: user
-        });
+        setUserInfo({user});
     }
 
     const onLogin = (user) => {
-        setUserInfo({
-            isAuthenticated: true,
-            user: user
-        });
+        setUserInfo({user});
     }
 
     const onLogout = () => {
-        setUserInfo({
-            isAuthenticated: false,
-            user: {}
-        });
+        util.clearUserData();
     }
 
     return (
         <AuthCtx.Provider value={userInfo}>
-        <div id="container">
-            <Header userInfo={userInfo} />
-            <main id="site-content">
-                <Switch>
-                    <Route path="/" exact component={Dashboard} />
-                    <Route path="/dashboard" component={Dashboard} />
-                    <Route path="/create" component={CreateBook} />
-                    <Route path="/edit/:bookId" component={EditBook} />
-                    <Route path="/my-books" component={MyBooks} />
-                    <Route path="/login">
-                        <Login onLogin={onLogin} />
-                    </Route>
-                    <Route path="/register">
-                        <Register onRegister={onRegister} />
-                    </Route>
-                    <Route path="/details/:bookId" component={Details} />
-                    <Route path="/logout" render={(props) => {
-                        logout()
-                        onLogout()
-                        return <Redirect to="/dashboard" />
-                    }} />
-                </Switch>
-            </main>
-            <footer id="site-footer">
-                <p>@OnlineBooksLibrary</p>
-            </footer>
-        </div>
-    </AuthCtx.Provider>
+            <div id="container">
+                <Header userInfo={userInfo} />
+                <main id="site-content">
+                    <Switch>
+                        <Route path="/" exact component={Dashboard} />
+                        <Route path="/dashboard" component={Dashboard} />
+                        <Route path="/create" component={CreateBook} />
+                        <Route path="/edit/:bookId" component={EditBook} />
+                        <Route path="/my-books" component={MyBooks} />
+                        <Route path="/login">
+                            <Login onLogin={onLogin} />
+                        </Route>
+                        <Route path="/register">
+                            <Register onRegister={onRegister} />
+                        </Route>
+                        <Route path="/details/:bookId" component={Details} />
+                        <Route path="/logout" render={(props) => {
+                            logout()
+                            onLogout()
+                            return <Redirect to="/dashboard" />
+                        }} />
+                    </Switch>
+                </main>
+                <footer id="site-footer">
+                    <p>@OnlineBooksLibrary</p>
+                </footer>
+            </div>
+        </AuthCtx.Provider>
     );
 }
 

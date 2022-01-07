@@ -80,7 +80,8 @@ export async function register(email, password) {
     const userData = {
         email: result.email,
         id: result._id,
-        token: result.accessToken
+        token: result.accessToken,
+        isAuthenticated: true
     };
 
     setUserData(userData);
