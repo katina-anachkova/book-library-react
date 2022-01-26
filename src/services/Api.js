@@ -1,6 +1,6 @@
 import {clearUserData, getUserData, isAuthenticated, setUserData} from "../util.js";
 
-const hostname = 'https://softuni-books-library.herokuapp.com';
+const hostname = 'https://softuni-practice-server-v2.herokuapp.com';
 
 async function request(url, options) {
     try {
