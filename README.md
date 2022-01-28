@@ -11,3 +11,5 @@ https://github.com/softuni-practice-server/softuni-practice-server
 ## Hosting URL: 
 
 https://softuni-books-library-90dc6.web.app/
+
+### responsiveness: tbd
